@@ -46,7 +46,6 @@ El curso se organiza en módulos, cada uno cubriendo temas específicos.
 2. Instala las dependencias:
    ```bash
    npm i
-      
 3. Inicia el servidor de desarrollo de Expo:
    ```bash
    npx expo start
