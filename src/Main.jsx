@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import ItemList from "./components/ItemList";
+import ItemList from "./pages/Movies/ItemList";
 import Movies from "./data/moviesRepository";
 
 import getMovies from "./hooks/moviesAxios";
@@ -12,7 +12,7 @@ const Main = (props) => {
   console.log(error);
   console.log(loading);
   console.log("----------------");
-  return <ItemList data={{ data, error, loading }} />;
+  return <ItemList style={{ padding: 5 }} data={{ data, error, loading }} />;
 };
 
 export default Main;

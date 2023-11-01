@@ -1,12 +1,12 @@
 import { Image, StyleSheet, View } from "react-native";
-import StyledText from "./StyledText";
+import StyledText from "../../components/StyledText";
 
 const MovieItem = ({ movie, ...props }) => {
   console.log(movie);
   const movieImage =
     movie.primaryImage !== null
       ? movie.primaryImage.url
-      : require("../../assets/imageNotFound.jpg");
+      : require("../../../assets/imageNotFound.jpg");
   return (
     <View style={{ flexDirection: "row" }}>
       <View>

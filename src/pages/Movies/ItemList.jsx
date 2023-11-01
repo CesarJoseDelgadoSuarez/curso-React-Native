@@ -1,8 +1,8 @@
 import { FlatList, View, Image } from "react-native";
-import StyledText from "./StyledText";
+import StyledText from "../../components/StyledText";
 import MovieItem from "./MovieItem";
 
-const ItemList = ({ data, error, loading, ...props }) => {
+const ItemList = ({ data, error, loading, style, ...props }) => {
   if (loading) {
     return <StyledText>Cargando...</StyledText>;
   }
@@ -16,6 +16,7 @@ const ItemList = ({ data, error, loading, ...props }) => {
     console.log(data.data.results);
     return (
       <FlatList
+        style={style}
         ItemSeparatorComponent={<StyledText />}
         data={movies}
         renderItem={({ item: movie }) => <MovieItem movie={movie} />}
