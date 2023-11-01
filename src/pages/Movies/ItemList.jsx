@@ -1,4 +1,4 @@
-import { FlatList, View, Image } from "react-native";
+import { FlatList } from "react-native";
 import StyledText from "../../components/StyledText";
 import MovieItem from "./MovieItem";
 
