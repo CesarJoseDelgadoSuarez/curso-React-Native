@@ -11,9 +11,8 @@ const ItemList = ({ data, error, loading, style, ...props }) => {
     return <StyledText>Error: {error.message}</StyledText>;
   }
 
-  if (data.data) {
-    const movies = data.data.results;
-    console.log(data.data.results);
+  if (data) {
+    const movies = data.results;
     return (
       <FlatList
         style={style}

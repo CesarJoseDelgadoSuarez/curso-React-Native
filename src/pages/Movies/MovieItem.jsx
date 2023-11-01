@@ -2,7 +2,6 @@ import { Image, StyleSheet, View } from "react-native";
 import StyledText from "../../components/StyledText";
 
 const MovieItem = ({ movie, ...props }) => {
-  console.log(movie);
   const movieImage =
     movie.primaryImage !== null
       ? movie.primaryImage.url

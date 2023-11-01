@@ -1,27 +1,41 @@
 import { StyleSheet, View } from "react-native";
-
+import ItemList from "./pages/Movies/ItemList";
 import useGetMovies from "./hooks/useMovies";
 import MiBoton from "./components/MiBoton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const url = "https://moviesdatabase.p.rapidapi.com/titles";
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "2ef8ef4548msh2b3c98b67ab0a14p13e72fjsnc3aae9dd4511",
+    "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+  },
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
 const Main = (props) => {
-  const { data, fetchData } = useGetMovies();
+  const { movies, updateMovies } = useGetMovies();
 
   useEffect(() => {
-    fetchData(null);
+    updateMovies(url, options);
   }, []);
+
+  const handleBoton = () => {
+    options.params = {};
+    options.params.titleType = "movie";
+    updateMovies(url, options);
+  };
 
   return (
     <View style={styles.container}>
-      <MiBoton onPress={() => fetchData("movie")} title="Presionar aquí" />
+      <ItemList data={movies} />
+      <MiBoton onPress={handleBoton} title="Presionar aquí" />
     </View>
   );
 };
