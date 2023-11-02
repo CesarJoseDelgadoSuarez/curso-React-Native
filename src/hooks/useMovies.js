@@ -29,7 +29,8 @@ const useGetMovies = () => {
   const [movies, setMovies] = useState([]);
 
   const updateMovies = async (url, options) => {
-    setMovies(await getData(url, options));
+    const response = await getData(url, options);
+    setMovies(response.results);
   };
 
   return { movies, updateMovies };
