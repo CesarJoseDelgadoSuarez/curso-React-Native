@@ -1,4 +1,4 @@
-import { FlatList, View } from "react-native";
+import { FlatList, View, StyleSheet } from "react-native";
 import StyledText from "../../components/StyledText";
 import MovieItem from "./MovieItem";
 import useGetMovies from "../../hooks/useMovies.js";
@@ -13,6 +13,12 @@ const options = {
     "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
   },
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+});
 
 const ItemList = ({ style, ...props }) => {
   const { movies, updateMovies } = useGetMovies();
@@ -29,7 +35,7 @@ const ItemList = ({ style, ...props }) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <MiBoton onPress={handleBoton} title="Presionar aquí" />
       <FlatList
         style={style}

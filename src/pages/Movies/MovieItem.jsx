@@ -5,7 +5,7 @@ const MovieItem = ({ movie, ...props }) => {
   const movieImage =
     movie.primaryImage !== null
       ? movie.primaryImage.url
-      : require("../../../assets/imageNotFound.jpg");
+      : require("../../../assets/images/imageNotFound.jpg");
   return (
     <View style={{ flexDirection: "row" }}>
       <View>
