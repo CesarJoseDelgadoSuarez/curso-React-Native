@@ -4,12 +4,12 @@ import StyledText from "../../components/StyledText";
 const MovieItem = ({ movie, ...props }) => {
   const movieImage =
     movie.primaryImage !== null
-      ? movie.primaryImage.url
+      ? { uri: movie.primaryImage.url }
       : require("../../../assets/images/imageNotFound.jpg");
   return (
     <View style={{ flexDirection: "row" }}>
       <View>
-        <Image style={styles.image} source={{ uri: movieImage }} />
+        <Image style={styles.image} source={movieImage} />
       </View>
       <View>
         <StyledText bold style={styles.title}>
