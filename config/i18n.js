@@ -1,6 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
 // Importa las traducciones
 import translationEN from "../assets/translation/en.json";
 import translationES from "../assets/translation/es.json";
@@ -20,9 +19,11 @@ i18n
     compatibilityJSON: "v3",
     resources,
     lng: "es",
+    ikeySeparator: false, // No uses punto y coma como separador de claves
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false, // No escapa las cadenas para React
     },
+
   });
 
 export default i18n;

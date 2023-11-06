@@ -8,18 +8,6 @@ import TranslationComponent from "./pages/Translation/TranslationComponent";
 import HomeScreen from "./pages/Home";
 import { StyleSheet, View, StatusBar } from "react-native";
 
-// const Stack = createStackNavigator();
-// const StackNavigator = () => (
-//   <Stack.Navigator>
-//     <Stack.Screen
-//       name="Inicio"
-//       component={HomeScreen}
-//       options={{ headerShown: false }}
-//     />
-//     {/* <Stack.Screen name="Peliculas" component={MovieList} /> */}
-//     {/* <Stack.Screen name="Traduccion" component={TranslationComponent} /> */}
-//   </Stack.Navigator>
-// );
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
@@ -68,10 +56,4 @@ const Main = (props) => (
   </View>
 );
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-  },
-});
 export default Main;

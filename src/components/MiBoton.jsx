@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const MiBoton = ({ onPress, title, ...props }) => (
+const MiBoton = ({ onPress, children, ...props }) => (
   <Pressable onPress={onPress} style={styles.button}>
-    <Text style={styles.buttonText}>{title}</Text>
+    <Text style={styles.buttonText}>{children}</Text>
   </Pressable>
 );
 

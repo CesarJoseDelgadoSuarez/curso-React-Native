@@ -4,6 +4,7 @@ import MovieItem from "./MovieItem";
 import useGetMovies from "../../hooks/useMovies.js";
 import { useEffect } from "react";
 import MiBoton from "../../components/MiBoton";
+import { useTranslation } from 'react-i18next';
 
 const url = "https://moviesdatabase.p.rapidapi.com/titles";
 const options = {
@@ -15,6 +16,7 @@ const options = {
 };
 
 const ItemList = ({ style, ...props }) => {
+  const { t, i18n } = useTranslation();
   const { movies, updateMovies } = useGetMovies();
 
   useEffect(() => {
@@ -28,23 +30,10 @@ const ItemList = ({ style, ...props }) => {
     console.log(movies);
   };
 
-  // <View style={styles.container}>
-  //   <MiBoton onPress={handleBoton} title="Presionar aquí" />
-  //   <View
-  //     style={{
-  //       flexDirection: "row",
-  //       justifyContent: "center",
-  //       alignItems: "center",
-  //       backgroundColor: "#222",
-  //     }}
-  //   >
-  //     <StyledText>Hola mundo !</StyledText>
-  //   </View>
-  // </View>
   return (
     <View style={styles.contenedorLista}>
       <View style={styles.filtros}>
-        <MiBoton onPress={handleBoton} title="Presionar aquí" />
+        <MiBoton onPress={handleBoton}>{t('pressHere')}</MiBoton>
       </View>
       <View style={{ flex: 1 }}>
         <FlatList

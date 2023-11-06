@@ -1,4 +1,7 @@
 {
   "greeting": "¡Hola, Mundo!",
-  "welcome": "Bienvenido a mi aplicación!"
+  "welcome": "Bienvenido a mi aplicación!",
+  "selectLanguage": "Selecciona un idioma",
+  "selectedLanguage": "Idioma seleccionado",
+  "pressHere":"Pulsa Aquí"
 }

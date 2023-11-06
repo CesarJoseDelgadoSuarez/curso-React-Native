@@ -1,38 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+// TranslationComponent.jsx
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import PickerComponent from '../../components/Filters/PickerComponent';
+import StyledText from '../../components/StyledText.jsx'
 import { I18nextProvider, useTranslation } from "react-i18next";
 import i18n from "../../../config/i18n.js";
-import SelectComponent from "../../components/Filters/SelectComponent";
-import languageArray from "../../../assets/translation/idiomas";
-import StyledText from "../../components/StyledText.jsx";
+import languageArray from '../../../assets/translation/idiomas';
 
 const TranslationComponent = () => {
   const { t } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState("es");
+  const [selectedLanguage, setSelectedLanguage] = useState('es');
 
   useEffect(() => {
     i18n.changeLanguage(selectedLanguage);
     console.log(`Idioma seleccionado: ${selectedLanguage}`);
   }, [selectedLanguage]);
 
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
+  const handleLanguageChange = (newLanguage) => {
+    setSelectedLanguage(newLanguage);
+    i18n.changeLanguage(newLanguage);
+
+    console.log('Nuevo idioma seleccionado:', newLanguage);
   };
 
+
   return (
-    <I18nextProvider i18n={i18n}>
-      <View style={{ flex: 1 }}>
-        <SelectComponent
-          options={languageArray}
-          handleSelectedOption={handleLanguageChange}
-        />
-        <View style={styles.container}>
-          <StyledText>{i18n.t("greeting")}</StyledText>
-        </View>
+    <View style={{ flex: 1 }}>
+      <View>
+        <StyledText>{t("selectLanguage")}</StyledText>
+        <PickerComponent options={languageArray} onValueChange={handleLanguageChange} />
+        <StyledText>{t("selectedLanguage")}</StyledText>
+      </View >
+      <View style={styles.container}>
+        <StyledText>{t("greeting")}</StyledText>
       </View>
-    </I18nextProvider>
-  );
+    </View>);
 };
+
+export default TranslationComponent;
+
 
 const styles = StyleSheet.create({
   container: {
@@ -41,5 +47,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default TranslationComponent;

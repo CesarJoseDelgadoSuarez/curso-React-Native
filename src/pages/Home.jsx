@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import StyledText from "../components/StyledText.jsx";
+import { useTranslation } from "react-i18next";
 
 const styles = StyleSheet.create({
   container: {
@@ -10,9 +11,10 @@ const styles = StyleSheet.create({
 });
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <StyledText> Hola mundo! </StyledText>
+      <StyledText> {t('welcome')} </StyledText>
     </View>
   );
 };
