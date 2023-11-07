@@ -4,7 +4,8 @@ import { View, StyleSheet } from 'react-native';
 import PickerComponent from '../../components/Filters/PickerComponent';
 import StyledText from '../../components/StyledText.jsx'
 import { I18nextProvider, useTranslation } from "react-i18next";
-import i18n from "../../../config/i18n.js";
+import i18n from "../../../config/i18n.js"; 
+
 import languageArray from '../../../assets/translation/idiomas';
 
 const TranslationComponent = () => {
