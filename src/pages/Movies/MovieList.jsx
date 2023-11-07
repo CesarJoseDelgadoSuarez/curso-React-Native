@@ -5,6 +5,7 @@ import useGetMovies from "../../hooks/useMovies.js";
 import { useEffect } from "react";
 import MiBoton from "../../components/MiBoton";
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from "@react-navigation/native";
 
 const url = "https://moviesdatabase.p.rapidapi.com/titles";
 const options = {
@@ -15,7 +16,10 @@ const options = {
   },
 };
 
-const ItemList = ({ style, ...props }) => {
+const MovieList = ({ style, ...props }) => {
+
+  const navigation = useNavigation()
+
   const { t, i18n } = useTranslation();
   const { movies, updateMovies } = useGetMovies();
 
@@ -30,6 +34,13 @@ const ItemList = ({ style, ...props }) => {
     console.log(movies);
   };
 
+  const handleFinish = (movieId) => {
+    console.log(movieId);
+    navigation.navigate('Informacion de Pelicula', { movieId: movieId })
+    // navigation.replace('Informacion de Pelicula', { movieId: movieId });
+    console.log("termine");
+  }
+
   return (
     <View style={styles.contenedorLista}>
       <View style={styles.filtros}>
@@ -39,7 +50,7 @@ const ItemList = ({ style, ...props }) => {
         <FlatList
           ItemSeparatorComponent={<StyledText />}
           data={movies}
-          renderItem={({ item: movie }) => <MovieItem movie={movie} />}
+          renderItem={({ item: movie }) => <MovieItem movie={movie} getMovieID={handleFinish} />}
         ></FlatList>
       </View>
     </View>
@@ -56,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ItemList;
+export default MovieList;
