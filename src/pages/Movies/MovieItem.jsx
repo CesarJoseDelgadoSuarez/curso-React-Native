@@ -1,19 +1,19 @@
 import { Image, StyleSheet, View } from "react-native";
 import StyledText from "../../components/StyledText";
-import ImageScaleAnimation from "../../animations/ImageScaleAnimation"
+import ImageScaleAnimation from "../../animations/ImageScaleAnimation";
 const MovieItem = ({ movie, getMovieID, ...props }) => {
   const movieImage =
     movie.primaryImage !== null
       ? { uri: movie.primaryImage.url }
-      : undefined;
+      : require("../../../assets/images/imageNotFound.jpg");
 
   const handleFinishAnimation = () => {
-    getMovieID(movie.id)
-  }
+    getMovieID(movie.id);
+  };
   return (
     <View style={{ flexDirection: "row" }}>
       <View>
-        <ImageScaleAnimation source={movieImage} handleFinish={handleFinishAnimation}></ImageScaleAnimation>
+        <Image source={movieImage} style={styles.image}></Image>
       </View>
       <View>
         <StyledText bold style={styles.title}>
