@@ -1,73 +1,7 @@
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  Easing,
-} from "react-native-reanimated";
-import { View, Button, StyleSheet } from "react-native";
+import ImageZoom from "../animations/ImageZoom";
+import ImageScaleAnimation from "../animations/ImageScaleAnimation";
+const HomeScreen = () => {
+  return <ImageScaleAnimation />;
+};
 
-export default function HomeScreen() {
-  const randomWidth = useSharedValue(10);
-
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
-
-  const style = useAnimatedStyle(() => {
-    return {
-      width: withTiming(randomWidth.value, config),
-    };
-  });
-
-  return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.box, style]} />
-      <Button
-        title="toggle"
-        onPress={() => {
-          randomWidth.value = Math.random() * 350;
-        }}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-  },
-  box: {
-    width: 100,
-    height: 80,
-    backgroundColor: "black",
-    margin: 30,
-  },
-});
-
-// import { StyleSheet, View } from "react-native";
-// import StyledText from "../components/StyledText.jsx";
-// import { useTranslation } from "react-i18next";
-// import { useNavigation } from "@react-navigation/native";
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-// });
-
-// const HomeScreen = () => {
-
-//   const { t } = useTranslation();
-//   return (
-//     <View style={styles.container}>
-//       <StyledText>{t('welcome')}</StyledText>
-//     </View>
-//   );
-// };
-
-// export default HomeScreen;
+export default HomeScreen;

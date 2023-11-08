@@ -13,7 +13,11 @@ const MovieItem = ({ movie, getMovieID, ...props }) => {
   return (
     <View style={{ flexDirection: "row" }}>
       <View>
-        <Image source={movieImage} style={styles.image}></Image>
+        <ImageScaleAnimation
+          source={movieImage}
+          style={styles.image}
+          handleFinish={handleFinishAnimation}
+        ></ImageScaleAnimation>
       </View>
       <View>
         <StyledText bold style={styles.title}>
