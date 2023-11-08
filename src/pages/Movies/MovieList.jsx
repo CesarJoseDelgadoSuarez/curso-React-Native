@@ -4,7 +4,7 @@ import MovieItem from "./MovieItem";
 import useGetMovies from "../../hooks/useMovies.js";
 import { useEffect } from "react";
 import MiBoton from "../../components/MiBoton";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
 const url = "https://moviesdatabase.p.rapidapi.com/titles";
@@ -17,40 +17,41 @@ const options = {
 };
 
 const MovieList = ({ style, ...props }) => {
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const { t, i18n } = useTranslation();
   const { movies, updateMovies } = useGetMovies();
 
   useEffect(() => {
-    updateMovies(url, options);
+    updateMovies();
   }, []);
 
   const handleBoton = () => {
-    options.params = {};
-    options.params.titleType = "movie";
-    updateMovies(url, options);
+    let params = {};
+    params.titleType = "movie";
+    updateMovies(params);
     console.log(movies);
   };
 
   const handleFinish = (movieId) => {
     console.log(movieId);
-    navigation.navigate('Informacion de Pelicula', { movieId: movieId })
+    navigation.navigate("Informacion de Pelicula", { movieId: movieId });
     // navigation.replace('Informacion de Pelicula', { movieId: movieId });
     console.log("termine");
-  }
+  };
 
   return (
     <View style={styles.contenedorLista}>
       <View style={styles.filtros}>
-        <MiBoton onPress={handleBoton}>{t('pressHere')}</MiBoton>
+        <MiBoton onPress={handleBoton}>{t("pressHere")}</MiBoton>
       </View>
       <View style={{ flex: 1 }}>
         <FlatList
           ItemSeparatorComponent={<StyledText />}
           data={movies}
-          renderItem={({ item: movie }) => <MovieItem movie={movie} getMovieID={handleFinish} />}
+          renderItem={({ item: movie }) => (
+            <MovieItem movie={movie} getMovieID={handleFinish} />
+          )}
         ></FlatList>
       </View>
     </View>
