@@ -20,6 +20,7 @@ const MovieInfo = ({ route }) => {
   const data = useGetMovie({ id: movieId });
 
   console.log(data);
+
   return (
     <View style={styles.container}>
       <StyledText>Movie Info for Movie ID: {movieId}</StyledText>
