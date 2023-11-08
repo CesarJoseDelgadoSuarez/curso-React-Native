@@ -1,6 +1,7 @@
 import { Image, StyleSheet, View } from "react-native";
 import StyledText from "../../components/StyledText";
 import ImageScaleAnimation from "../../animations/ImageScaleAnimation";
+import ImageZoom from "../../animations/ImageZoom";
 const MovieItem = ({ movie, getMovieID, ...props }) => {
   const movieImage =
     movie.primaryImage !== null
