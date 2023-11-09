@@ -7,15 +7,6 @@ import MiBoton from "../../components/MiBoton";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
-const url = "https://moviesdatabase.p.rapidapi.com/titles";
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "2ef8ef4548msh2b3c98b67ab0a14p13e72fjsnc3aae9dd4511",
-    "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
-  },
-};
-
 const MovieList = ({ style, ...props }) => {
   const navigation = useNavigation();
 
@@ -30,14 +21,10 @@ const MovieList = ({ style, ...props }) => {
     let params = {};
     params.titleType = "movie";
     updateMovies(params);
-    console.log(movies);
   };
 
   const handleFinish = (movieId) => {
-    console.log(movieId);
     navigation.navigate("Informacion de Pelicula", { movieId: movieId });
-    // navigation.replace('Informacion de Pelicula', { movieId: movieId });
-    console.log("termine");
   };
 
   return (
