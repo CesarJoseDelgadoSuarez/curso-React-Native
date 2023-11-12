@@ -9,8 +9,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjOWJkYjAzN2FiYzI2NDZhNTYzMjg3ZjY2MTkyMmZlYyIsInN1YiI6IjY1NGNlMWRkMjg2NmZhMTA5MjhiNzIxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rfaVtcvgr5nzZ_xqNWPrw2eEZfE9Ze7BIpzaCoMFdfM",
+    Authorization: config.Authorization,
   },
 };
 
