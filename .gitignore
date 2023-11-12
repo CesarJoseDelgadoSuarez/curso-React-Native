@@ -37,3 +37,5 @@ yarn-error.*
 
 #config.js contains API Keys for TMDB
 src/hooks/TMDB/config.js
+
+src/hooks/rapidApi.config.js
