@@ -1,45 +1,49 @@
-// /hooks/TMDB/useTMDBMovies.js
 import { useState, useEffect } from "react";
-import fetch from "node-fetch";
-import config from "./config";
+import { fetchGenres, fetchMovies } from "./tmdbApiUtils"; // Archivo separado con funciones de utilidad
 
-const url =
-  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: config.Authorization,
-  },
-};
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
-const useTMDBMovies = () => {
+const useTMDBApi = () => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const getDataFromTMDB = async () => {
-    try {
-      console.log("obteniendo datos...");
-      const response = await fetch(url, options);
-      console.log("Parseando datos...");
-      const json = await response.json();
-      console.log("datos parseados");
-      setLoading(false);
-      console.log(json);
-      setMovies(json.results);
-    } catch (err) {
-      setLoading(false);
-      setError(err);
-      console.error("Error:", err);
-    }
+
+  const getFilteredMovies = async (genresParam = "") => {
+    setLoading(true);
+    const genreQueryString =
+      genresParam.trim() !== "" ? `&with_genres=${genresParam}` : "";
+    const filteredUrl = `${TMDB_BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc${genreQueryString}`;
+    const res = await fetchMovies(filteredUrl);
+    setMovies(res.results);
+    setLoading(false);
   };
 
   useEffect(() => {
-    getDataFromTMDB();
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const genresRes = await fetchGenres(
+          `${TMDB_BASE_URL}/genre/movie/list?language=en`
+        );
+        setGenres(genresRes.genres);
+
+        const moviesRes = await fetchMovies(
+          `${TMDB_BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
+        );
+        setMovies(moviesRes.results);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setError(error);
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  return { movies, genres, loading, error };
+  return { movies, genres, loading, error, getFilteredMovies };
 };
 
-export default useTMDBMovies;
+export default useTMDBApi;

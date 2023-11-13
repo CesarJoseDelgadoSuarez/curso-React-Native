@@ -10,8 +10,7 @@ const TabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
       name="Inicio"
-      // component={HomeScreen}
-      component={MovieStack}
+      component={HomeScreen}
       options={{
         tabBarIcon: ({ color, size }) => (
           <Icon name="home" color={color} size={size} />

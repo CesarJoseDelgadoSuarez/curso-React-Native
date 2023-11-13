@@ -4,7 +4,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Platform } from "react-native";
 // import MovieList from "../../pages/Movies/MovieList";
-import MovieInfo from "../../pages/Movies/MovieInfo";
+// import MovieInfo from "../../pages/Movies/MovieInfo";
+import MovieInfo from "../../pages/TMDB/MovieInfo";
 import MovieList from "../../pages/TMDB/listaTMDB";
 const Stack = createStackNavigator();
 

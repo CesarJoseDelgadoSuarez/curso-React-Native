@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { optionsMovie, optionsMovies } from "./rapidApi.config";
+import { optionsMovie, optionsMovies } from "../RapidApi/rapidApi.config";
 const url = "https://moviesdatabase.p.rapidapi.com/titles";
 
 const getData = async () => {
   try {
     const response = await axios.get(url, optionsMovies);
-    return response.data; // Actualiza el estado con la nueva información
+    return response.data;
   } catch (error) {
     console.error("Error al obtener datos:", error);
     return error;

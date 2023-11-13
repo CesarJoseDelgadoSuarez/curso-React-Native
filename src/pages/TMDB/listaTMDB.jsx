@@ -1,16 +1,17 @@
 // /components/MovieList.js
 import React, { useState } from "react";
-import { View, Text, FlatList, Image, StyleSheet, Button } from "react-native";
+import { View, Text, FlatList, StyleSheet, Button } from "react-native";
 import useTMDBMovies from "../../hooks/TMDB/useTMDBMovies";
 import FiltersComponent from "./filters/FiltersComponent";
 import MovieItem from "./MovieItem";
+import LoadingComponent from "../../components/loading/Loading";
 
 const MovieList = () => {
-  const { movies, genres, loading, error } = useTMDBMovies();
+  const { movies, genres, loading, error, getFilteredMovies } = useTMDBMovies();
   const [selectedGenre, setSelectedGenre] = useState("");
 
   if (loading) {
-    return <Text>Cargando...</Text>;
+    return <LoadingComponent />;
   }
 
   if (error) {
@@ -18,7 +19,8 @@ const MovieList = () => {
   }
 
   const handleFilter = () => {
-    // Llama al método fetchMovies para realizar una nueva consulta con los filtros actuales
+    console.log(selectedGenre);
+    getFilteredMovies(selectedGenre);
   };
 
   return (
@@ -34,7 +36,7 @@ const MovieList = () => {
         data={movies}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <MovieItem movie={item} />}
-        style={[styles.movieList, { marginTop: 16 }]} // Use array syntax
+        style={[styles.movieList, { marginTop: 16 }]}
       />
     </View>
   );
@@ -52,6 +54,11 @@ const styles = StyleSheet.create({
   },
   movieList: {
     marginTop: 5,
+  },
+  cargando: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
