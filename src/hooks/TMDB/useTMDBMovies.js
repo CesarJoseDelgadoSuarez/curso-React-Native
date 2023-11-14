@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { fetchGenres, fetchMovies } from "./tmdbApiUtils"; // Archivo separado con funciones de utilidad
+import { fetchMovies } from "./tmdbApiUtils"; // Archivo separado con funciones de utilidad
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 const useTMDBApi = () => {
   const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -23,11 +22,6 @@ const useTMDBApi = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const genresRes = await fetchGenres(
-          `${TMDB_BASE_URL}/genre/movie/list?language=en`
-        );
-        setGenres(genresRes.genres);
-
         const moviesRes = await fetchMovies(
           `${TMDB_BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
         );
@@ -43,7 +37,12 @@ const useTMDBApi = () => {
     fetchData();
   }, []);
 
-  return { movies, genres, loading, error, getFilteredMovies };
+  return {
+    movies,
+    loading,
+    error,
+    getFilteredMovies,
+  };
 };
 
 export default useTMDBApi;

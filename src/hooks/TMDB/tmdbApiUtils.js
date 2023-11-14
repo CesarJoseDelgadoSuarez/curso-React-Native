@@ -24,4 +24,8 @@ const fetchMovies = async (url) => {
   return fetchData(url);
 };
 
-export { fetchGenres, fetchMovies };
+const fetchMovieById = async (movieId) => {
+  return fetchData(url, movieId);
+};
+
+export { fetchGenres, fetchMovies, fetchMovieById };

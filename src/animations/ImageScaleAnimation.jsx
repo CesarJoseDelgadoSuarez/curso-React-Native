@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, Animated, Pressable, Dimensions } from "react-native";
+import { Animated, Pressable, Dimensions } from "react-native";
 
 class ImageScaleAnimation extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class ImageScaleAnimation extends Component {
     ]).start(({ finished }) => {
       this.isAnimating = false;
       this.handleFinish();
-      // Restaurar los valores originales después de que la animación haya terminado
+
       this.resetAnimation();
     });
   };

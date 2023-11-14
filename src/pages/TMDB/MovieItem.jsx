@@ -1,9 +1,12 @@
 // /components/MovieItem.js
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Pressable, View, Text, Image, StyleSheet } from "react-native";
 
-const MovieItem = ({ movie }) => (
-  <View style={styles.movieContainer}>
+const MovieItem = ({ movie, onPress }) => {
+  const HandlePress = () => {
+    console.log("Me has pulsado");
+  };
+  <Pressable style={styles.movieContainer} onPress={HandlePress}>
     <Image
       style={styles.moviePoster}
       source={{
@@ -14,8 +17,8 @@ const MovieItem = ({ movie }) => (
       <Text style={styles.movieTitle}>{movie.title}</Text>
       <Text style={styles.movieOverview}>{movie.overview}</Text>
     </View>
-  </View>
-);
+  </Pressable>;
+};
 
 const styles = StyleSheet.create({
   movieContainer: {

@@ -5,9 +5,14 @@ import useTMDBMovies from "../../hooks/TMDB/useTMDBMovies";
 import FiltersComponent from "./filters/FiltersComponent";
 import MovieItem from "./MovieItem";
 import LoadingComponent from "../../components/loading/Loading";
-
+import useTMDBGenres from "../../hooks/TMDB/useTMDBGenres";
 const MovieList = () => {
-  const { movies, genres, loading, error, getFilteredMovies } = useTMDBMovies();
+  const { movies, loading, error, getFilteredMovies } = useTMDBMovies();
+  const {
+    genres,
+    loading: loadingGenres,
+    error: errorGenres,
+  } = useTMDBGenres();
   const [selectedGenre, setSelectedGenre] = useState("");
 
   if (loading) {
@@ -23,6 +28,11 @@ const MovieList = () => {
     getFilteredMovies(selectedGenre);
   };
 
+  const onMoviePress = (movieId) => {
+    // navigation.navigate("Informacion de Pelicula", { movieId: movieId });
+    console.log("me has pulsado: ", movieId);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Listado de películas:</Text>
@@ -35,7 +45,9 @@ const MovieList = () => {
       <FlatList
         data={movies}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <MovieItem movie={item} />}
+        renderItem={({ item }) => (
+          <MovieItem movie={item} onPress={onMoviePress} />
+        )}
         style={[styles.movieList, { marginTop: 16 }]}
       />
     </View>
