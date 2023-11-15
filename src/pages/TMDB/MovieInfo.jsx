@@ -1,19 +1,14 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import useTMDBMovie from "../../hooks/TMDB/useTMDBMovie";
-import useTMDBGenres from "../../hooks/TMDB/useTMDBGenres";
 import LoadingComponent from "../../components/loading/Loading";
 
 const MovieInfo = () => {
   const route = useRoute();
   const { movieId } = route.params;
   const { movie, loading, error } = useTMDBMovie(movieId);
-  const {
-    genres,
-    loading: loadingGenres,
-    error: errorGenres,
-  } = useTMDBGenres();
-  if (loading || loadingGenres) {
+
+  if (loading) {
     return <LoadingComponent />;
   }
   return (
