@@ -6,7 +6,8 @@ import FiltersComponent from "./filters/FiltersComponent";
 import MovieItem from "./MovieItem";
 import LoadingComponent from "../../components/loading/Loading";
 import useTMDBGenres from "../../hooks/TMDB/useTMDBGenres";
-const MovieList = () => {
+
+const MovieList = ({ navigation: { navigate } }) => {
   const { movies, loading, error, getFilteredMovies } = useTMDBMovies();
   const {
     genres,
@@ -15,7 +16,7 @@ const MovieList = () => {
   } = useTMDBGenres();
   const [selectedGenre, setSelectedGenre] = useState("");
 
-  if (loading) {
+  if (loading || loadingGenres) {
     return <LoadingComponent />;
   }
 
@@ -24,13 +25,14 @@ const MovieList = () => {
   }
 
   const handleFilter = () => {
-    console.log(selectedGenre);
-    getFilteredMovies(selectedGenre);
+    // console.log(selectedGenre);
+    // getFilteredMovies(selectedGenre);
+    console.log("movies: ", movies);
   };
 
   const onMoviePress = (movieId) => {
-    // navigation.navigate("Informacion de Pelicula", { movieId: movieId });
     console.log("me has pulsado: ", movieId);
+    navigate("MovieDetail", { movieId: movieId, genres: genres });
   };
 
   return (
@@ -42,14 +44,18 @@ const MovieList = () => {
         onValueChange={(itemValue) => setSelectedGenre(itemValue)}
       />
       <Button title="Buscar" onPress={handleFilter} />
-      <FlatList
-        data={movies}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <MovieItem movie={item} onPress={onMoviePress} />
-        )}
-        style={[styles.movieList, { marginTop: 16 }]}
-      />
+      {movies.length > 0 ? (
+        <FlatList
+          data={movies}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item: movie }) => (
+            <MovieItem movie={movie} onPress={onMoviePress} />
+          )}
+          style={[styles.movieList, { marginTop: 16 }]}
+        />
+      ) : (
+        <Text>No hay películas para mostrar</Text>
+      )}
     </View>
   );
 };

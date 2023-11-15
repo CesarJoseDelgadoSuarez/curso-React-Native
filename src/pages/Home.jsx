@@ -4,7 +4,7 @@ import ImageScaleAnimation from "../animations/ImageScaleAnimation";
 const HomeScreen = () => {
   const handleFinishedAnimation = () => {};
 
-  return <ImageZoom />;
+  return <ImageZoom handleFinish={handleFinishedAnimation} />;
 };
 
 export default HomeScreen;

@@ -12,7 +12,7 @@ const options = {
 const fetchData = async (url) => {
   const response = await fetch(url, options);
   const json = await response.json();
-  console.log(json);
+  console.log("Respuesta obtenida: ", json);
   return json;
 };
 
@@ -24,7 +24,7 @@ const fetchMovies = async (url) => {
   return fetchData(url);
 };
 
-const fetchMovieById = async (movieId) => {
+const fetchMovieById = async (url, movieId) => {
   return fetchData(url, movieId);
 };
 

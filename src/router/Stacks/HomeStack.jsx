@@ -8,7 +8,7 @@ import MovieList from "../../pages/TMDB/listaTMDB";
 const Stack = createStackNavigator();
 
 const MovieStack = () => (
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="MovieList">
     <Stack.Screen
       name="MovieList"
       component={MovieList}
@@ -17,7 +17,7 @@ const MovieStack = () => (
       }}
     />
     <Stack.Screen
-      name="Informacion de Pelicula"
+      name="MovieDetail"
       component={MovieInfo}
       options={({ route }) => ({
         title: Platform.OS === "web" ? "" : "Movie Info",

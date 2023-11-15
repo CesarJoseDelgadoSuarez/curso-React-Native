@@ -15,6 +15,8 @@ const useTMDBGenres = () => {
         const genresRes = await fetchGenres(
           `${TMDB_BASE_URL}/genre/movie/list?language=en`
         );
+
+        setLoading(false);
         setGenres(genresRes.genres);
       } catch (error) {
         setLoading(false);

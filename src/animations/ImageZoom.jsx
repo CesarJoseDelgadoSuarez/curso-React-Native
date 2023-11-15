@@ -35,7 +35,7 @@ const ImageZoom = ({ handleFinish, ...props }) => {
   };
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value, translateX: 100, translateY: 100 }],
+    transform: [{ scale: 1 }, { translateX: 100 }, { translateY: 100 }],
   }));
 
   return (

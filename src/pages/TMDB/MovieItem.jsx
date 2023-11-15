@@ -1,23 +1,24 @@
-// /components/MovieItem.js
 import React from "react";
 import { Pressable, View, Text, Image, StyleSheet } from "react-native";
-
 const MovieItem = ({ movie, onPress }) => {
-  const HandlePress = () => {
-    console.log("Me has pulsado");
+  const handlePress = () => {
+    onPress(movie.id);
   };
-  <Pressable style={styles.movieContainer} onPress={HandlePress}>
-    <Image
-      style={styles.moviePoster}
-      source={{
-        uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      }}
-    />
-    <View style={styles.movieInfo}>
-      <Text style={styles.movieTitle}>{movie.title}</Text>
-      <Text style={styles.movieOverview}>{movie.overview}</Text>
-    </View>
-  </Pressable>;
+
+  return (
+    <Pressable style={styles.movieContainer} onPress={handlePress}>
+      <Image
+        style={styles.moviePoster}
+        source={{
+          uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+        }}
+      />
+      <View style={styles.movieInfo}>
+        <Text style={styles.movieTitle}>{movie.title}</Text>
+        <Text style={styles.movieOverview}>{movie.overview}</Text>
+      </View>
+    </Pressable>
+  );
 };
 
 const styles = StyleSheet.create({
